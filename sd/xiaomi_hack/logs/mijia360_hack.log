@@ -1,0 +1,20 @@
+### Export variables from /sdcard/xiaomi_hack/mijia360/config.cfg ... ###
+export "XIAOMI_HACK_ROOT_PASSWORD=toor"
+export "XIAOMI_HACK_FTP_SERVER=YES"
+
+### Set root password ... ###
+Wed Jun 19 00:00:00 CST 2013
+Changing password for root
+New password: 
+Bad password: too short
+Retype password: 
+Password for root changed by root
+Sun Sep 11 03:18:58 CST 2016
+### Activating FTP server ... ###
+tcpsvd: info: listening on 0.0.0.0:21, starting.
+
+tcpsvd: info: status 1/30
+tcpsvd: info: pid 660 from 192.168.0.15
+tcpsvd: info: start 660 :192.168.0.19 ::192.168.0.15:61879
+tcpsvd: info: end 660 exit 0
+tcpsvd: info: status 0/30

@@ -1,3 +1,5 @@
+<img src="warning.png" alt="Xiaomi Mijia 360" width="100%"/>
+
 xiaomi-hack project
 ===================
 
@@ -67,16 +69,12 @@ The telnet server runs on port 23.
 
 Default password for **root** user access is **toor**.
 
-Be very careful when modifying files on the camera, you could brick it.
-
 FTP server
 ----------
 
 The FTP server runs on port 21.
 
 No authentication is needed, you can use anonymous user.
-
-Be very careful when modifying files on the camera, you could brick it.
 
 RTSP server
 -----------

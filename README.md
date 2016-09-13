@@ -1,9 +1,9 @@
-<img src="warning.png" alt="Xiaomi Mijia 360" width="100%"/>
+---
+- WARNING - DISCLAIMER -
+===
+**Many files on the Mijia 360 are writable. Be very careful when you modify files on it, you might brick it forever.**
 
-Update 2016-09-13
-===
-Official root password may have been found, test will be done asap, and this project will be updated accordingly. You should wait a little bit before running this hack.
-===
+----
 
 xiaomi-hack project
 ===================
@@ -72,7 +72,7 @@ Telnet server
 
 The telnet server runs on port 23.
 
-Default password for **root** user access is **toor**.
+Default password for **root** user is **imi_ipc**
 
 FTP server
 ----------
@@ -107,6 +107,10 @@ xiaomi_hack/                   Hacks folder
     bin/
       tcpsvd                   TCP Service Daemon (http://smarden.org/ipsvd/index.html) to launch FTP Server Daemon (ftpd)
     config.cfg                 Configuration file
+    sh/
+      miio_post.sh             This script is run after official miio.sh
+      miio_pre.sh              This script is run before official miio.sh
+    shadow.backup              Backup of original /etc/shadow, don't modify it in anyway !
 ````
 
 Hack customization

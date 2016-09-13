@@ -9,9 +9,11 @@ export XIAOMI_DEVICE_NAME=mijia360
 
 if [ $# -eq 0 ]; then
    export XIAOMI_HACK_HOME=/sdcard/xiaomi_hack
+   export XIAOMI_HACK_TMP=/tmp/xiaomi_hack
    export XIAOMI_DEVICE_HOME=${XIAOMI_HACK_HOME}/${XIAOMI_DEVICE_NAME}
    export XIAOMI_LOGS_HOME=${XIAOMI_HACK_HOME}/logs
    mkdir -p "${XIAOMI_LOGS_HOME}"
+   mkdir -p "${XIAOMI_HACK_TMP}"
    $0 nop > "${XIAOMI_LOGS_HOME}/${XIAOMI_DEVICE_NAME}_hack.log" 2>&1
    exit $?
 fi
@@ -32,19 +34,23 @@ fi
 
 ##### MIJIA360 CUSTOM HACK
 
-# Change root password
-if [ "${XIAOMI_HACK_ROOT_PASSWORD}" != "" ]; then
-   echo "### Set root password ..."
-   # Save current date
-   current_date=$(date +%Y.%m.%d-%H:%M:%S)
-   # Set current date to 2013 June 19th to make "last changed date" unchanged in /etc/shadow
-   date -s 2013-06-19
-   # Change password of current user which is root
-   echo -e "${XIAOMI_HACK_ROOT_PASSWORD}\n${XIAOMI_HACK_ROOT_PASSWORD}\n" | passwd
-   # Restore original date
-   date -s $current_date
-else
-   echo "Error: XIAOMI_HACK_ROOT_PASSWORD is not set"
+# In first versions of this hack, default root password was unknown.
+# That's why we changed it to be able to connect using telnet.
+# Now that default root password is known, we can revert back to it.
+# We check if revert is needed only for the two first available firmwares:
+#    3.3.2_2016071217
+#    3.3.2_2016081814
+# For future firmware, previous hack shouldn't be used anymore
+
+XIAOMI_FIRMWARE_VERSION=$(cat /etc/os-release)
+XIAOMI_SHADOW_BACKUP=${XIAOMI_DEVICE_HOME}/shadow.backup
+if [ "${XIAOMI_FIRMWARE_VERSION}" == "CHUANGMI_VERSION=3.3.2_2016071217" -o "${XIAOMI_FIRMWARE_VERSION}" == "CHUANGMI_VERSION=3.3.2_2016081814" ]; then
+   if [ -f "${XIAOMI_SHADOW_BACKUP}" ]; then
+      diff /etc/shadow "${XIAOMI_SHADOW_BACKUP}" > /dev/null
+      if [ $? -eq 1 ]; then
+         cp "${XIAOMI_SHADOW_BACKUP}" /etc/shadow
+      fi
+   fi
 fi
 
 # Launch ftp server
@@ -58,4 +64,23 @@ if [ "$XIAOMI_HACK_FTP_SERVER" = "YES" ]; then
       echo "Error: Unable to activate FTP server, ${XIAOMI_DEVICE_HOME}/bin/tcpsvd is not available"
    fi
 fi
+
+# Startup sequence is:
+# /usr/local/bin/run.sh
+#    /usr/imi/start.sh
+#       /usr/local/bin/init.sh
+#          /sdcard/ext-pro.sh
+#       /usr/imi/miio.sh
+#          /usr/imi/imiApp
+
+# We virtually modify /usr/imi/miio.sh
+# We create a modified version of /usr/imi/miio.sh in /tmp
+# We mount the modified version in place of the official one, this modification is not persistent
+
+# Create miio_pre.sh / miio.sh / miio_post.sh sequence
+cat ${XIAOMI_DEVICE_HOME}/sh/miio_pre.sh /usr/imi/miio.sh ${XIAOMI_DEVICE_HOME}/sh/miio_post.sh > ${XIAOMI_HACK_TMP}/miio.sh
+# Make the modified version executable
+chmod +x ${XIAOMI_HACK_TMP}/miio.sh
+# Mount the modified version in place of the official one, this modification is not persistent
+mount --bind ${XIAOMI_HACK_TMP}/miio.sh /usr/imi/miio.sh
 

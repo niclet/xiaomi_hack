@@ -1,5 +1,10 @@
 <img src="warning.png" alt="Xiaomi Mijia 360" width="100%"/>
 
+Update 2016-09-13
+===
+Official root password may have been found, test will be done asap, and this project will be updated accordingly. You should wait a little bit before running this hack.
+===
+
 xiaomi-hack project
 ===================
 

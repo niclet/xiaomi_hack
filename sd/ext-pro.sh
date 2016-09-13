@@ -83,4 +83,3 @@ cat ${XIAOMI_DEVICE_HOME}/sh/miio_pre.sh /usr/imi/miio.sh ${XIAOMI_DEVICE_HOME}/
 chmod +x ${XIAOMI_HACK_TMP}/miio.sh
 # Mount the modified version in place of the official one, this modification is not persistent
 mount --bind ${XIAOMI_HACK_TMP}/miio.sh /usr/imi/miio.sh
-

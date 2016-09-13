@@ -117,3 +117,4 @@ Hack customization
 ------------------
 
 Each camera hack can be customized from its **config.cfg** file.
+

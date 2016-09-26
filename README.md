@@ -28,6 +28,7 @@ These cameras have the following default features :
 * wifi setup from a smartphone application
 * video data sent over the network on Chinese servers in the cloud to allow people to view camera data from their smartphone wherever they are
 * local video storage on a SD card
+* camera speaks Chinese
 
 
 This hack intends to provide following features :
@@ -35,6 +36,8 @@ This hack intends to provide following features :
 * Telnet server
 * FTP server
 * RTSP server
+* Custom timezone
+* Custom voices
 
 Installation on the camera
 ==========================
@@ -86,6 +89,19 @@ RTSP server
 
 The RTSP server is not yet available.
 
+Custom timezone
+---------------
+
+The custom timezone is not yet available.
+
+Custom voices
+-------------
+
+Following voices are available:
+
+* English
+* French
+
 
 BETA !
 ======
@@ -102,11 +118,15 @@ Hack content
 ````
 ext-pro.sh			           Mijia 360 camera backdoor
 xiaomi_hack/                   Hacks folder
+  config.cfg                   Configuration file
   logs/                        Logs folder, you'll find various logs there
   mijia360/                    Mijia 360 hack
+    audio/
+      common/                  This folder contains sounds files which doesn't require any translation
+      en/                      This folder contains English voices
+      fr/                      This folder contains French voices
     bin/
       tcpsvd                   TCP Service Daemon (http://smarden.org/ipsvd/index.html) to launch FTP Server Daemon (ftpd)
-    config.cfg                 Configuration file
     sh/
       miio_post.sh             This script is run after official miio.sh
       miio_pre.sh              This script is run before official miio.sh
@@ -117,4 +137,8 @@ Hack customization
 ------------------
 
 Each camera hack can be customized from its **config.cfg** file.
+
+Custom voices are still in beta stage, you may still hear Chinese voices. That's why audio logs are activated through XIAOMI_HACK_LANGUAGE_TRACES=YES
+
+In this case, a log file called **mijia360_audio.log** will appear in **xiaomi_hack/logs** folder. If you hear Chinese voice, please open a bug report and provide this log file.
 

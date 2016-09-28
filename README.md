@@ -92,7 +92,7 @@ The RTSP server is not yet available.
 Custom timezone
 ---------------
 
-The custom timezone is not yet available.
+You can customize timezone in the **config.cfg** file with the **XIAOMI\_HACK\_TIMEZONE** variable.
 
 Custom voices
 -------------

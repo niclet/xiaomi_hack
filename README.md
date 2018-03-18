@@ -5,12 +5,12 @@
 
 ----
 
-xiaomi-hack project
+xiaomi_hack project
 ===================
 
 Special thanks go to **fritz-smh** : https://github.com/fritz-smh/yi-hack
 
-This xiaomi-hack project has been totally inspired from its own project.
+This xiaomi_hack project has been totally inspired from its own project.
 
 Purpose
 =======
@@ -49,9 +49,9 @@ Prepare the memory card
 
 Clone this repository on a computer :
 
-    git clone http://github.com/niclet/xiaomi-hack.git
+    git clone http://github.com/niclet/xiaomi_hack.git
     
-Then, format a micro SD card in fat32 (vfat) format and copy the content of the **xiaomi-hack/sd/** folder at the root of your memory card.
+Then, format a micro SD card in fat32 (vfat) format and copy the content of the **xiaomi_hack/sd/** folder at the root of your memory card.
 
 Start the camera
 ----------------

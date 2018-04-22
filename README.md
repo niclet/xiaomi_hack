@@ -1,4 +1,10 @@
----
+THIS PROJECT IS OUTDATED AND NOT MAINTAINED ANYMORE
+===
+
+
+----
+
+===
 - WARNING - DISCLAIMER -
 ===
 **Many files on the Mijia 360 are writable. Be very careful when you modify files on it, you might brick it forever.**
@@ -141,4 +147,3 @@ Each camera hack can be customized from its **config.cfg** file.
 Custom voices are still in beta stage, you may still hear Chinese voices. That's why audio logs are activated through XIAOMI_HACK_LANGUAGE_TRACES=YES
 
 In this case, a log file called **mijia360_audio.log** will appear in **xiaomi_hack/logs** folder. If you hear Chinese voice, please open a bug report and provide this log file.
-
